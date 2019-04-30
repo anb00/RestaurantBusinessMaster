@@ -1,0 +1,87 @@
+
+body {
+  background-color: lightgrey;
+}
+
+/* RatingBox */
+.RatingBox {
+  border:1px solid black;
+  width: 600px;
+  height: 60px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: lightgrey;
+}
+/* EnD RaingBOX */
+
+/* mAiN */
+.container {
+  background-color: lightgrey;
+}
+.tableInside {
+  position:relative;
+  left:  -20px;
+}
+
+.leftSecond_box {
+  position: absolute;
+  top: 60%;
+  margin-left: 1%;
+}
+
+.auth {
+   font-family: monospace;
+   font-size: 11px;
+   color:black;
+   right: 45%;
+   padding: -1px;
+   margin-right: 2px;
+   position: relative;
+ }
+.authBox {
+  font-family: monospace;
+
+
+
+  padding: 0px;
+  margin-top: 0.6px;
+  margin-right: 2px;
+
+
+  box-shadow: 0px 0px 3px 0px rgba(0,0,0,1);
+  background: black;
+  color: white;
+}
+
+.registration-anb {
+    width: 200px;
+    text-align: center;
+    line-height: 50px;
+    height: 200px;
+    float: left;
+    display: block;
+    color: #606466;
+    border-radius: 3px 0px 0px 3px;
+    background-color: #363bbb;
+}
+
+@font-face {
+    font-family: PirataOne;
+    src: url(/fonts/PirataOne-Regular.ttf);
+    font-size: 40px;
+    size: 40px;
+    color: white;
+}
+
+@font-face {
+    font-family: 'PirataOne';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/pirata-one-v7-latin-regular.eot');
+    src: local('PirataOne'),
+    url('/fonts/pirata-one-v7-latin-regular.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/pirata-one-v7-latin-regular.woff2') format('woff2'),
+    url('/fonts/pirata-one-v7-latin-regular.woff') format('woff'),
+    url('/fonts/pirata-one-v7-latin-regular.ttf') format('truetype'),
+    url('/fonts/pirata-one-v7-latin-regular.svg#PirataOne') format('svg');
+}

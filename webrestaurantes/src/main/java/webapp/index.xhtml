@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+<!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<title>Y</title>
+<meta name="description" content=""/>
+<meta name="author" content=""/>
+
+<!-- Mobile Specific Metas
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<!-- FONT Awesome for Free - Icons
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="css/clean.css"/>
+
+<!-- CSS Skeleton Framework, Bootstrap and Personal CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/normalize.css"/>
+<link rel="stylesheet" href="css/skeleton.css"/>
+
+<!-- Favicon
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+</h:head>
+<h:body>
+    <div id="blackwrapper"></div>
+    <div id="topnavbar">
+
+
+        <div id="rightinnavbar">
+            <table>
+                <tr><td><i class="em em-banana"></i></td></tr>
+                <tr><td><h:outputText render="#{loginFormBackend.user != null}" value="Hi, #{loginFormBackend.user.firstName} #{loginFormBackend.user.lastName}"/></td></tr>
+                <tr><td><h:outputText render="#{loginFormBackend.user != null}" value="You are Logged as #{loginFormBackend.user.nick}"/></td></tr>
+            </table>
+
+
+            <h:outputText render="#{loginFormBackend.user = null}" value="" ><a href="" class="navright_login_button">Registrarse</a>or <a href="login.xhtml" class="navright_login_button">Iniciar sesión</a></h:outputText>
+
+
+
+        </div>
+
+    </div>
+
+    <hr/>
+
+
+        <!-- Primary Page Layout
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <!-- .container is main centered wrapper -->
+        <div class="container">
+            <br/>
+            <br/>
+
+
+
+            <!-- just use a number and class 'column' or 'columns' -->
+            <div class="row">
+                <div class="two columns">
+                    <br/>
+                    <br/>
+                    <ul>
+                        <li>Item 1</li>
+                        <li>
+                            Item 2
+                            <ul>
+                                <li>Item 2.1</li>
+                                <li>Item 2.2</li>
+                            </ul>
+                        </li>
+                        <li>Item 3</li>
+                        <li>Item 4</li>
+                        <li>Item 5</li>
+                        <li>Item 6</li>
+                        <li>Item 7</li>
+                        <li>Item 8</li>
+                    </ul></div>
+                <div class="ten columns">
+                    <h:form rendered="#{restaurantFormBackend.list != null}" >
+                        <h:dataTable value="#{restaurantFormBackend.list}" var="item" border="1">
+                            <h:column><f:facet name="header">ID</f:facet>&nbsp;
+
+                                <h:commandLink><a href="restaurant.xhtml?ID=#{item.id}">#{item.id}</a></h:commandLink>&nbsp;</h:column>
+                            <h:column><f:facet name="header"><a href="restaurant.xhtml?name=#{restaurantFormBackend.restaurant.name}"> Name</a></f:facet>#{item.name}</h:column>
+                            <h:column><f:facet name="header">Location</f:facet>#{item.location}</h:column>
+                            <h:column><f:facet name="header">description</f:facet>#{item.description}</h:column>
+                            <h:column><f:facet name="header">CAT/RAT</f:facet>#{item.cathegory}</h:column>
+                            <!-- <h:column>
+                                <h:commandButton value="edit" action="#{placesBeanCrud.edit(item)}" />
+                            </h:column>
+                            <h:column>
+                                <h:commandButton value="delete" action="#{placesBeanCrud.delete(item)}" />
+                            </h:column> -->
+                        </h:dataTable>
+                    </h:form>
+                    <hr/>
+                    <div class="hidden">
+                   <h3>Add a Place for Lunch/Dinner</h3>
+                    <h:form Class="registration-anb" styleClass="visibility:hidden;">
+                        <table>
+                            <tr>
+                                <td>Restaurant Name:</td>
+                                <td>
+                                    <h:inputText label="Rest"
+                                                 id="Rest" value="#{restaurantFormBackend.restaurant.name}"
+                                                 required="true" Class="form-control"/>
+                                    <h:message for="Rest" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Cathegory</td>
+                                <td>
+                                    <h:inputText label="cathegory"
+                                                 id="cathegory" value="#{restaurantFormBackend.restaurant.cathegory}"
+                                                 required="true" Class="form-control"/> <cite>Shold be TWO_FORKS,FOUR_FORKS,...</cite>
+                                    <h:message for="cathegory" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Location</td>
+                                <td>
+                                    <h:inputText label="location"
+                                                 id="location" value="#{restaurantFormBackend.restaurant.location}"
+                                                 required="true" Class="form-control" />
+                                    <h:message for="location" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Description:</td>
+                                <td>
+                                    <h:inputText label="Description"
+                                                 id="desc" value="#{restaurantFormBackend.restaurant.description}"
+                                                 required="true" Class="form-control"/>
+                                    <h:message for="desc" />
+                                </td>
+                            </tr>
+
+
+
+                        </table>
+                        <p>
+                            <h:messages/>
+                        </p>
+                        <p>
+                            <h:commandButton value="Register" action="#{restaurantFormBackend.addConfirmedRest}" styleClass="btn btn-warning"/>
+                        </p>
+                    </h:form>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+    <!-- End Document
+      –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</h:body>
+</html>

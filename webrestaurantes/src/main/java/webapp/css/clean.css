@@ -1,0 +1,246 @@
+#topnavbar {
+
+    background-color: #000;
+    top: 0px;
+    height: 64px;
+    border-bottom: 1px solid #e5e5e5;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(229, 229, 229);
+    position: fixed;
+    width: 100%;
+    z-index: 99999999999;
+
+}
+.hidden {
+    visibility:hidden;
+}
+#rightinnavbar {
+    float: right;
+    min-width: 149px;
+    float: right;
+    padding-left: 30px;
+    padding-right: 30px;
+    top: 0px;
+    position: relative;
+    text-align: right;
+}
+.icono_squares {
+    opacity: .55;
+    top: 4px;
+    position: relative;
+    cursor: pointer;
+}
+
+
+.navright_Register_button {  font-size: 13px;
+    color: #fff;
+    border: 1px solid #4285f4;
+    border-top-color: rgb(66, 133, 244);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: rgb(66, 133, 244);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: rgb(66, 133, 244);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: rgb(66, 133, 244);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    font-weight: bold;
+    background: #444;
+    background-image: -webkit-linear-gradient(top, rgb(7, 5, 2), rgb(0, 31, 4));
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    background: -webkit-linear-gradient(top,#13ff64,#13dd64);
+    background-image: -webkit-linear-gradient(top, rgb(67, 135, 253), rgb(70, 131, 234));
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    box-shadow: 2px 3px 4px rgb(2,3,4);
+    display: block;
+    line-height: 28px;
+    padding: 0 12px;
+    border-radius: 2px;
+    cursor: default;
+    margin-left: 15px; }
+.navright_login_button {
+    font-size: 13px;
+    color: #fff;
+    border: 1px solid #4285f4;
+    border-top-color: rgb(66, 133, 244);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: rgb(66, 133, 244);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: rgb(66, 133, 244);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: rgb(66, 133, 244);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    font-weight: bold;
+    background: #4285f4;
+    background-image: -webkit-linear-gradient(top, rgb(67, 135, 253), rgb(70, 131, 234));
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    background: -webkit-linear-gradient(top,#4387fd,#4683ea);
+    background-image: -webkit-linear-gradient(top, rgb(67, 135, 253), rgb(70, 131, 234));
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    display: inline-block;
+    line-height: 28px;
+    padding: 0 12px;
+    border-radius: 2px;
+    cursor: default;
+    margin-left: 15px;
+}
+#topnavbar2 {
+    
+    z-index: 99999999;
+    top: 64px;
+    display: flex;
+    position: fixed;
+    width: 100%;
+    border-bottom: 1px solid #dedede;
+    background-color: darkgrey;
+    color: white;
+    font-size: 15px;
+    height: 57px;
+    line-height: 57px;
+    padding-left: 46px;
+}
+#wrapper {
+    max-width: 978px;
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    background-color: white;
+}
+#blackwrapper {
+    background-color:lightgrey;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 998;
+    display: none;
+}
+
+/* font monospace */
+#copy {
+    font-family: monospace;
+    color: #757575;
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: justify;
+}
+
+/* ===== top ==== */
+#top {
+    background-color: #EEEEEE;
+    border-bottom: 1px solid #e2e2e2;
+    padding: 4px 0px 3px 0;
+    margin: 0 0 20px 0;
+    min-height: 40px;
+}
+#top .container {
+    padding: 0 20px;
+}
+#top #form-currency .currency-select,
+#top #form-language .language-select {
+    text-align: left;
+}
+#top #form-currency .currency-select:hover,
+#top #form-language .language-select:hover {
+    text-shadow: none;
+    color: #ffffff;
+    background-color: #000000;
+    background-image: linear-gradient(to bottom, #23a1d1, #1f90bb);
+    background-repeat: repeat-x;
+}
+#top .btn-link, #top-links li, #top-links a {
+    color: #888;
+    text-shadow: 0 1px 0 #FFF;
+    text-decoration: none;
+}
+#top .btn-link:hover, #top-links a:hover {
+    color: #444;
+}
+#top-links .dropdown-menu a {
+    text-shadow: none;
+}
+#top-links .dropdown-menu a:hover {
+    color: #FFF;
+}
+#top .btn-link strong {
+    font-size: 14px;
+        line-height: 14px;
+}
+#top-links {
+    padding-top: 6px;
+}
+#top-links a + a {
+    margin-left: 15px;
+}
+/* logo */
+#logo {
+    margin: 0 0 10px 0;
+}
+/* search */
+#search {
+    margin-bottom: 10px;
+}
+#search .input-lg {
+    height: 40px;
+    line-height: 20px;
+    padding: 0 10px;
+}
+#search .btn-lg {
+    font-size: 15px;
+    line-height: 18px;
+    padding: 10px 35px;
+    text-shadow: 0 1px 0 #FFF;
+}
