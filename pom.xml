@@ -35,7 +35,7 @@
     <modules>
         <module>restaurantes-entities</module>
         <module>webrestaurantes</module>
-        <module>OracleConnection</module>
+      <!--  <module>OracleConnection</module> -->
     </modules>
 
 
