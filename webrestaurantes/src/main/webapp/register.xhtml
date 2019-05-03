@@ -5,12 +5,12 @@
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
     <title></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/Style.css"/>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/Style.css"/> -->
 
 </h:head>
 <h:body>
-    <div class="navbar navbar-expand-lg navbar-light bg-blue" style="background-color: black;">
+    <!--<div class="navbar navbar-expand-lg navbar-light bg-blue" style="background-color: black;">
 
         <a class="navbar-brand a" href="#" style="color: white;">Título Superior</a>
 <div class="authBox">
@@ -23,9 +23,9 @@
     </div>
     <br>
 
-    </br>
+    </br> -->
 
-    <div class="container">
+    <!-- <div class="container">
         <div class="row">
             <div class="col-2">
 
@@ -36,11 +36,11 @@
     <br/>
 <div style="text-align: center;">
     <br/>
-</div>
+</div> -->
+    <fieldset><legend>USER REGISTRATIO</legend>
 
                 <h:form Class="registration-anb">
-                    <h2 class="form-signin-heading">User Registration </h2>
-                    <h6><i>Create you Account</i></h6>
+
 
                     <table>
                         <tr>
@@ -61,7 +61,7 @@
                                 <h:message for="pass1" />
                             </td>
                         </tr>
-                        <tr>
+                        <!--<tr>
                             <td>Password (repeat):</td>
                             <td>
                                 <h:inputText label="Password"
@@ -69,7 +69,7 @@
                                              required="true" Class="form-control" />
                                 <h:message for="pass2" />
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td>First Name:</td>
                             <td>
@@ -128,11 +128,11 @@
                     <p>
                         <h:commandButton value="Register" action="#{userFormBackend.addConfirmedUser}" styleClass="btn btn-primary"/>
                     </p>
+                    <p>
+                        <h:commandButton value="Cancel" action="main" immediate="true" />
+                    </p>
                 </h:form>
-</div>
-        </div>
+    </fieldset>
 
-
-    </div>
 </h:body>
 </html>

@@ -19,5 +19,17 @@
         </navigation-case>
     </navigation-rule>
     -->
+    <managed-bean>
+        <managed-bean-name>User</managed-bean-name>
+        <managed-bean-class>com.iesemilidarder.anb00.entities.User
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>Restaurant</managed-bean-name>
+        <managed-bean-class>com.iesemilidarder.anb00.entities.Restaurant
+        </managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 
 </faces-config>

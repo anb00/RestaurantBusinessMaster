@@ -4,6 +4,7 @@ package com.iesemilidarder.anb00.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import javax.faces.bean.SessionScoped;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
+
 public class Restaurant implements Serializable {
 
     private static final long serialVersionUID = 1878061099776559468L;
