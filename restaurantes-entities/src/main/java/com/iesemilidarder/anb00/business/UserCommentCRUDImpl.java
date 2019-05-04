@@ -10,4 +10,11 @@ public class UserCommentCRUDImpl extends CRUDImpl<Long, UserComment> implements 
     public UserCommentCRUDImpl() {
         super(UserComment.class);
     }
+
+    @Override
+    public UserComment create(UserComment item) throws CRUDException {
+        //em.refresh(item.getUser());  // need to refresh to make User instance managed.
+        return super.create(item); // now, add.
+    }
+
 }

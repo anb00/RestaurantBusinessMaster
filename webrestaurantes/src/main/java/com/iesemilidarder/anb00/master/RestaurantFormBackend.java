@@ -3,40 +3,39 @@ package com.iesemilidarder.anb00.master;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
-import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import org.jboss.logging.Logger;
 
 import com.iesemilidarder.anb00.business.CRUDException;
-import com.iesemilidarder.anb00.business.RestaurantLocal;
-import com.iesemilidarder.anb00.business.UserCommentLocal;
 import com.iesemilidarder.anb00.entities.Restaurant;
+import com.iesemilidarder.anb00.entities.User;
 import com.iesemilidarder.anb00.entities.UserComment;
 
 @SuppressWarnings("deprecation")
 @ManagedBean
-@RequestScoped
-public class RestaurantFormBackend {
+@ViewScoped
+public class RestaurantFormBackend extends BackendBaseClass {
 
     /* Aplico el filtro de logs para ver los fallos */
     private static final Logger log = Logger.getLogger(RestaurantFormBackend.class);
 
     private Long id;
+    private Restaurant restaurant;
+    private List<UserComment> userComments;
+    private UserComment newUserComment = new UserComment();
 
-    Restaurant restaurant;
-
-    Collection<UserComment> userComments;
-
-    @Resource(lookup = "java:module/RestaurantCRUDImpl!com.iesemilidarder.anb00.business.RestaurantLocal")
-    RestaurantLocal al;
-
-    @Resource(lookup = "java:module/UserCommentCRUDImpl!com.iesemilidarder.anb00.business.UserCommentLocal")
-    UserCommentLocal ucl;
+    @ManagedProperty(value = "#{loginFormBackend}")
+    private LoginFormBackend loginFormBackend;
 
     public Long getId() {
         return id;
@@ -49,21 +48,15 @@ public class RestaurantFormBackend {
     public Restaurant getRestaurant() {
         try {
             if (restaurant == null) {
-                if (id == null) {
-                    log.infof("No id specified, retrieving a new restaurant");
-                    return restaurant = new Restaurant();
-                } else {
-                    log.infof("al.retrieve(%ld)", id);
-                    restaurant = al.retrieve(id);
-                    log.infof("retrieved Restaurant %s", restaurant);
+                restaurant = new Restaurant();
+                if (id != null) {
+                    restaurant = restaurantLocal.retrieve(id);
+                    log.infof("Retrieving restaurant with id = %d => %s", id, restaurant);
                 }
             }
             return restaurant;
         } catch (CRUDException e) {
-            FacesContext fc = FacesContext.getCurrentInstance();
-            for (Throwable t = e; t != null; t = t.getCause()) {
-                fc.addMessage(null, new FacesMessage(t.toString()));
-            }
+            addException(e);
             return new Restaurant();
         }
     }
@@ -72,23 +65,76 @@ public class RestaurantFormBackend {
         this.restaurant = restaurant;
     }
 
-    public Collection<UserComment> getUserComments() {
+    public List<UserComment> getUserComments() {
         try {
             if (userComments == null) {
-                if (id == null) {
-                    return new ArrayList<UserComment>();
+                userComments = new ArrayList<UserComment>();
+                if (id != null) {
+                    userComments = userCommentLocal.retrieveWhere(
+                            "SELECT UC FROM UserComment AS UC WHERE UC.restaurant.id = ?0 ORDER BY UC.timestamp DESC",
+                            id);
                 }
-                userComments = ucl.retrieveWhere(
-                        "SELECT UC FROM UserComment AS UC WHERE UC.restaurant.id = ?0 ORDER BY UC.timestamp DESC", id);
             }
             return userComments;
         } catch (CRUDException e) {
-            FacesContext fc = FacesContext.getCurrentInstance();
-            for (Throwable t = e; t != null; t = t.getCause()) {
-                fc.addMessage(null, new FacesMessage(t.toString()));
-            }
+            addException(e);
             return new ArrayList<UserComment>();
         }
+    }
+
+    public UserComment getNewUserComment() {
+        return newUserComment;
+    }
+
+    public void setNewUserComment(UserComment newUserComment) {
+        this.newUserComment = newUserComment;
+    }
+
+    public void setLoginFormBackend(LoginFormBackend loginFormBackend) {
+        this.loginFormBackend = loginFormBackend;
+    }
+
+    public String addUserCommentAction() {
+        String outcome = null;
+        String message = null;
+        if (loginFormBackend == null) {
+            addMessage(message = "Cannot access to loginFormBackend");
+            log.infof(message);
+            return outcome;
+        }
+        User user = loginFormBackend.getUser();
+        if (user == null) {
+            addMessage(message = "Unlogged user");
+            log.infof(message);
+            return outcome;
+        }
+
+        log.infof("Setting restaurant to %s", getRestaurant());
+        newUserComment.setRestaurant(getRestaurant());
+
+        Date now = new Date();
+        log.infof("Setting date to %s", now);
+        newUserComment.setTimestamp(now);
+
+        log.infof("Setting user to %s", user);
+        newUserComment.setUser(user);
+
+        try {
+            newUserComment = userCommentLocal.create(newUserComment);
+            log.infof("Created comment %s", newUserComment);
+            userComments = null; // force reload view.
+        } catch (CRUDException e) {
+            addException(e);
+        }
+        newUserComment = new UserComment();
+        return outcome;
+    }
+
+    public void validateComment(FacesContext fc, UIComponent comp, Object value) throws ValidatorException {
+        final int MINIMUM_LENGTH = 16;
+        if (((String) value).length() < MINIMUM_LENGTH)
+            throw new ValidatorException(
+                    new FacesMessage("Comment must be at least " + MINIMUM_LENGTH + " characters."));
     }
 
     /**
@@ -99,9 +145,8 @@ public class RestaurantFormBackend {
      */
 
     public String addConfirmedRest() throws CRUDException {
-        //loggerRest.info("El restaurante guardado en DB es = " + restaurant + " es " + getRestaurant() + ", rest = "
-        //	+ restaurant);
-        restaurant = al.create(restaurant);
+        log.infof("El restaurante guardado en DB es %s", getRestaurant());
+        restaurant = restaurantLocal.create(restaurant);
         restaurant = new Restaurant();
         return "index";
 
@@ -109,10 +154,9 @@ public class RestaurantFormBackend {
 
     public Collection<Restaurant> getList() {
         try {
-            return al.retrieveAll();
+            return restaurantLocal.retrieveAll();
         } catch (CRUDException e) {
             return new ArrayList<Restaurant>(); // una lista vacía.
         }
     }
-
 }

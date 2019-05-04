@@ -8,7 +8,7 @@
 <h:head>
 
 
-    <title>Index</title>
+    <title>_TEMPLATE</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
@@ -34,7 +34,9 @@
     <ui:decorate template="_sidebar_topstory.xhtml"/>
     <ui:decorate template="_sidebar_secondstory.xhtml" />
     <ui:include src="_privacy.xhtml">
-        <ui:param name="user" value="#{userFormBackend.user.nick}"></ui:param>
+        <ui:param name="user" value="#{userFormBackend.user.nick}">
+            UKNOWN
+        </ui:param>
     </ui:include>
 
 </h:body>

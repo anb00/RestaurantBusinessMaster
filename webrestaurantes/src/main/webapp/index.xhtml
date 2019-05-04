@@ -6,121 +6,107 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
+    <!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+    <title>Index of Restaurants</title>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- Mobile Specific Metas
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- FONT Awesome for Free - Icons
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/clean.css" />
+
+    <!-- CSS Skeleton Framework, Bootstrap and Personal CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/skeleton.css" />
 
 
-    <title>Index</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-
+    <!-- Favicon
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
 
 </h:head>
 <h:body>
 
-    <table>
-        <tr><td><i class="em em-banana"></i></td></tr>
-        <tr><td><h:outputText render="#{loginFormBackend.user != null}" value="Hi, #{loginFormBackend.user.firstName} #{loginFormBackend.user.lastName}"/></td></tr>
-        <tr><td><h:outputText render="#{loginFormBackend.user != null}" value="You are Logged as #{loginFormBackend.user.nick}"/></td></tr>
-    </table>
-
-
-    <h:outputText render="#{loginFormBackend.user = null}" value="" ><a href="" class="navright_login_button">Registrarse</a>or <a href="login.xhtml" class="navright_login_button">Iniciar sesión</a></h:outputText>
-
-
-
-
-
-    <hr/>
-
-
-    <br/>
-    <ul>
-        <li>Item 1</li>
-        <li>
-            Item 2
-            <ul>
-                <li>Item 2.1</li>
-                <li>Item 2.2</li>
-            </ul>
-        </li>
-        <li>Item 3</li>
-        <li>Item 4</li>
-        <li>Item 5</li>
-        <li>Item 6</li>
-        <li>Item 7</li>
-        <li>Item 8</li>
-    </ul>
-
-    <h:form rendered="#{restaurantFormBackend.list != null}" >
-        <h:dataTable value="#{restaurantFormBackend.list}" var="item" border="1">
-            <h:column><f:facet name="header">ID</f:facet>&nbsp;
-
-                <h:commandLink><a href="restaurant.xhtml?ID=#{item.id}">#{item.id}</a></h:commandLink>&nbsp;</h:column>
-            <h:column><f:facet name="header"><a href="restaurant.xhtml?name=#{restaurantFormBackend.restaurant.name}"> Name</a></f:facet>#{item.name}</h:column>
-            <h:column><f:facet name="header">Location</f:facet>#{item.location}</h:column>
-            <h:column><f:facet name="header">description</f:facet>#{item.description}</h:column>
-            <h:column><f:facet name="header">CAT/RAT</f:facet>#{item.cathegory}</h:column>
-            <!-- <h:column>
-                <h:commandButton value="edit" action="#{placesBeanCrud.edit(item)}" />
-            </h:column>
-            <h:column>
-                <h:commandButton value="delete" action="#{placesBeanCrud.delete(item)}" />
-            </h:column> -->
-        </h:dataTable>
+    <h:form>
+        <h:outputText value="User: "
+                      rendered="#{loginFormBackend.user eq null}" />
+        <h:inputText id="user" label="User: "
+                     value="#{loginFormBackend.userid}" required="true"
+                     rendered="#{loginFormBackend.user eq null}" />
+        <h:message for="user" />
+        <h:outputText value="Pass: "
+                      rendered="#{loginFormBackend.user eq null}" />
+        <h:inputSecret id="pass" label="Pass: "
+                       value="#{loginFormBackend.password}" required="true"
+                       rendered="#{loginFormBackend.user eq null}" />
+        <h:message for="pass" />
+        <h:outputText rendered="#{loginFormBackend.user ne null}"
+                      value="Hi, #{loginFormBackend.user.firstName} #{loginFormBackend.user.lastName}(#{loginFormBackend.user.nick})" />
+        <h:commandButton action="#{loginFormBackend.loginAction}"
+                         class="navright_login_button" value="Login"
+                         rendered="#{loginFormBackend.user eq null}" />
+        <h:commandButton action="#{loginFormBackend.logoutAction}"
+                         class="navright_login_button" value="Logout"
+                         rendered="#{loginFormBackend.user ne null}" />
+        <h:button outcome="register" class="navright_login_button"
+                  value="Register" />
     </h:form>
-    <hr/>
-
-    <h3>Add a Place for Lunch/Dinner</h3>
-    <h:form Class="registration-anb" styleClass="visibility:hidden;">
-        <table>
-            <tr>
-                <td>Restaurant Name:</td>
-                <td>
-                    <h:inputText label="Rest"
-                                 id="Rest" value="#{restaurantFormBackend.restaurant.name}"
-                                 required="true" Class="form-control"/>
-                    <h:message for="Rest" />
-                </td>
-            </tr>
-            <tr>
-                <td>Cathegory</td>
-                <td>
-                    <h:inputText label="cathegory"
-                                 id="cathegory" value="#{restaurantFormBackend.restaurant.cathegory}"
-                                 required="true" Class="form-control"/> <cite>Shold be TWO_FORKS,FOUR_FORKS,...</cite>
-                    <h:message for="cathegory" />
-                </td>
-            </tr>
-            <tr>
-                <td>Location</td>
-                <td>
-                    <h:inputText label="location"
-                                 id="location" value="#{restaurantFormBackend.restaurant.location}"
-                                 required="true" Class="form-control" />
-                    <h:message for="location" />
-                </td>
-            </tr>
-            <tr>
-                <td>Description:</td>
-                <td>
-                    <h:inputText label="Description"
-                                 id="desc" value="#{restaurantFormBackend.restaurant.description}"
-                                 required="true" Class="form-control"/>
-                    <h:message for="desc" />
-                </td>
-            </tr>
+    <h3 class="heading">Logo Goes Here</h3>
+    <hr />
 
 
-
-        </table>
-        <p>
-            <h:messages/>
-        </p>
-        <p>
-            <h:commandButton value="Register" action="#{restaurantFormBackend.addConfirmedRest}" styleClass="btn btn-warning"/>
-        </p>
-    </h:form>
-
+    <!-- Primary Page Layout
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- .container is main centered wrapper -->
+    <div class="container">
+        <div class="row">
+            <div class="ten columns">
+                <!-- <h:form rendered="#{restaurantFormBackend.list != null}"> -->
+                <table id="e table">
+                <h:dataTable value="#{restaurantFormBackend.list}" var="item"
+                             border="1" id="e" class="table">
+                    <h:column>
+                        <f:facet name="header">Image</f:facet>
+                        <h:graphicImage url="#{item.imageUrl}"
+                                        rendered="#{item.imageUrl ne null}"  width="220" id="thumbnail" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        <h:link outcome="restaurant" value="#{item.id}">
+                            <f:param name="ID" value="#{item.id}" />
+                        </h:link>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        <h:link outcome="restaurant" value="#{item.name}">
+                            <f:param name="Name" value="#{item.name}" />
+                        </h:link>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Location</f:facet>
+                        <h:outputText value="#{item.location}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">CAT/RAT</f:facet>
+                        <h:outputText value="#{item.cathegory}" />
+                    </h:column>
+                </h:dataTable>
+                </table>
+            </div>
+        </div>
+    </div>
 </h:body>
 </html>

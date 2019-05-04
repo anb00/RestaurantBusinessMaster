@@ -6,7 +6,8 @@
 <h:head>
     <title></title>
     <f:metadata>
-        <f:viewParam name="ID" value="#{restaurantFormBackend.id}" immediate="true"/>
+        <f:viewParam name="ID" value="#{restaurantFormBackend.id}"
+                     immediate="true" />
     </f:metadata>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
@@ -14,117 +15,107 @@
 
 </h:head>
 <h:body>
-    <table>
-        <tr><td><i class="em em-banana"></i></td></tr>
-        <tr><td><h:outputText render="#{loginFormBackend.user != null}" value="Hi, #{loginFormBackend.user.firstName} #{loginFormBackend.user.lastName}"/></td></tr>
-        <tr><td><h:outputText render="#{loginFormBackend.user != null}" value="You are Logged as #{loginFormBackend.user.nick}"/></td></tr>
+    <h:form>
+        <h:outputText value="User: "
+                      rendered="#{loginFormBackend.user eq null}" />
+        <h:inputText id="user" label="User: "
+                     value="#{loginFormBackend.userid}"
+                     rendered="#{loginFormBackend.user eq null}" />
+        <h:message for="user" />
+        <h:outputText value="Pass: "
+                      rendered="#{loginFormBackend.user eq null}" />
+        <h:inputSecret id="pass" label="Pass: "
+                       value="#{loginFormBackend.password}"
+                       rendered="#{loginFormBackend.user eq null}" />
+        <h:message for="pass" />
+        <h:outputText rendered="#{loginFormBackend.user ne null}"
+                      value="Hi, #{loginFormBackend.user} (#{loginFormBackend.user.nick})" />
+        <h:commandButton action="#{loginFormBackend.loginAction}"
+                         class="navright_login_button" value="Login"
+                         rendered="#{loginFormBackend.user eq null}" />
+        <h:commandButton action="#{loginFormBackend.logoutAction}"
+                         class="navright_login_button" value="Logout"
+                         rendered="#{loginFormBackend.user ne null}" />
+        <h:button outcome="register" class="navright_login_button"
+                  value="Register" />
+        <h:button outcome="index" value="Main Page" />
+    </h:form>
+    <hr />
+    <h:graphicImage url="#{restaurantFormBackend.restaurant.imageUrl}"
+                    width="256" rendered="#{restaurantFormBackend.restaurant ne null}" />
+    <h1>
+        <h:outputText value="#{restaurantFormBackend.restaurant}" />
+    </h1>
+
+    <table border="1" style="align: center">
+        <tr>
+            <td><h:outputText value="ID: " /></td>
+            <td><h:outputText value="#{restaurantFormBackend.restaurant.id}" /></td>
+        </tr>
+        <tr>
+            <td><h:outputText value="Name: " /></td>
+            <td><h:outputText
+                    value="#{restaurantFormBackend.restaurant.name}" /></td>
+        </tr>
+        <tr>
+            <td><h:outputText value="Cathegory: " /></td>
+            <td><h:outputText
+                    value="#{restaurantFormBackend.restaurant.cathegory}" /></td>
+        </tr>
+        <tr>
+            <td><h:outputText value="Location: " /></td>
+            <td><h:outputText
+                    value="#{restaurantFormBackend.restaurant.location}" /></td>
+        </tr>
+        <tr>
+            <td><h:outputText value="Description: " /></td>
+            <td><h:outputText
+                    value="#{restaurantFormBackend.restaurant.description}" /></td>
+        </tr>
     </table>
-    <hr>
-
-    </hr>
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2">
-                What you say about this restaurant?
-                <form class="form" action="#">
-
-                    <table>
-                        <tr>
-                            <td>Your Nick is: <h:outputText value="#{userFormBackend.user.nick}" /></td>
-                        </tr>
-                        <tr>
-                            <td><h:outputText value="#{restaurantFormBackend}" /></td>
-                        </tr>
-                        <tr>
-
-                            <td>
-                                <h:inputText label="comment"
-                                             id="comment" value="#{restaurantFormBackend.userComments.parallelStream}"
-                                             required="true" Class="form-control"/>
-                                <h:message for="comment" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h:commandButton value="Add Msg" action="#{restaurantFormBackend.makecomment}" styleClass="btn btn-primary"/>
-
-                            </td>
-                        </tr>
-                    </table>
-
-                </form>
-            </div>
-            <div class="col-lg-10">
-                <h1>
-                    Restaurant #
-                    <h:outputText value="#{restaurantFormBackend.id}" />
-                </h1>
-                <table border="1" style="align: center">
-                    <tr>
-                        <td><h:outputText value="ID: " /></td>
-                        <td><h:outputText value="#{restaurantFormBackend.restaurant.id}" /></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="Name: " /></td>
-                        <td><h:outputText
-                                value="#{restaurantFormBackend.restaurant.name}" /></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="Cathegory: " /></td>
-                        <td><h:outputText
-                                value="#{restaurantFormBackend.restaurant.cathegory}" /></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="Location: " /></td>
-                        <td><h:outputText
-                                value="#{restaurantFormBackend.restaurant.location}" /></td>
-                    </tr>
-                    <tr>
-                        <td><h:outputText value="Description: " /></td>
-                        <td><h:outputText
-                                value="#{restaurantFormBackend.restaurant.description}" /></td>
-                    </tr>
-                </table>
-                <h2>Comments:</h2>
-                <h:dataTable value="#{restaurantFormBackend.userComments}" var="comm"
-                             border="1">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="ID" />
-                        </f:facet>
-                        <h:outputText value="#{comm.id}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Author" />
-                        </f:facet>
-                        <h:outputText value="#{comm.user}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Fecha" />
-                        </f:facet>
-                        <h:outputText value="#{comm.timestamp}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Comment text" />
-                        </f:facet>
-                        <h:outputText value="#{comm.texto}" />
-                    </h:column>
-                </h:dataTable>
-                <h:messages />
-
-            </div>
-
-
-        </div>
-
-
-
-    </div>
-
+    <h2>Comments:</h2>
+    <h:dataTable value="#{restaurantFormBackend.userComments}" var="comm"
+                 border="1">
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="ID" />
+            </f:facet>
+            <h:outputText value="#{comm.id}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Author" />
+            </f:facet>
+            <h:outputText value="#{comm.user}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Fecha" />
+            </f:facet>
+            <h:outputText value="#{comm.timestamp}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">
+                <h:outputText value="Comment text" />
+            </f:facet>
+            <h:outputText value="#{comm.texto}" />
+        </h:column>
+    </h:dataTable>
+    <h:form>
+        <p>
+            <h:outputText value="Comment: " />
+            <h:inputTextarea id="comment" label="Comment: "
+                             value="#{restaurantFormBackend.newUserComment.texto}" size="1024"
+                             required="true" validator="#{restaurantFormBackend.validateComment}" />
+            <h:message for="comment" />
+        </p>
+        <p>
+            <h:commandButton value="Add"
+                             action="#{restaurantFormBackend.addUserCommentAction}" />
+        </p>
+    </h:form>
+    <p>
+        <h:messages />
+    </p>
 </h:body>
 </html>

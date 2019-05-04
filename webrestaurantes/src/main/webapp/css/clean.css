@@ -32,6 +32,20 @@
     cursor: pointer;
 }
 
+#e {
+    background-color: lightgrey;
+    border: 0px;
+
+}
+
+#thumbnail {
+    width: 220px;
+    height: 220px;
+    border:1px solid black;
+}
+
+
+
 
 .navright_Register_button {  font-size: 13px;
     color: #fff;

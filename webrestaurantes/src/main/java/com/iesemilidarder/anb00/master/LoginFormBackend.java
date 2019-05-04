@@ -5,19 +5,18 @@ import com.iesemilidarder.anb00.business.AuthenticationException;
 import com.iesemilidarder.anb00.business.UserLocal;
 import com.iesemilidarder.anb00.entities.User;
 
-import javax.annotation.Resource;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
-
+import com.iesemilidarder.anb00.business.AuthenticationException;
+import com.iesemilidarder.anb00.entities.User;
 
 @SuppressWarnings("deprecation")
 @ManagedBean
 @SessionScoped
-public class LoginFormBackend {
+public class LoginFormBackend extends BackendBaseClass {
 
     public static final FacesMessage AUTHENTICATION_FAILURE = new FacesMessage("Authentication failure");
 
@@ -25,9 +24,6 @@ public class LoginFormBackend {
     String password;
 
     User user = null; // not yet authenticated.
-
-    @Resource(lookup = "java:module/UserCRUDImpl!com.iesemilidarder.anb00.business.UserLocal")
-    UserLocal ul;
 
     public String getUserid() {
         return userid;
@@ -55,17 +51,23 @@ public class LoginFormBackend {
 
     // Action Method
     public String loginAction() {
-        FacesContext fc = FacesContext.getCurrentInstance();
         try {
-            user = ul.authenticate(userid, password);
+            user = userLocal.authenticate(userid, password);
+            userid = null;
             password = null;
-            return "index";
+            return "OK";
         } catch (AuthenticationException e) {
-            for(Throwable t = e; t != null; t = t.getCause())
-                fc.addMessage(null, new FacesMessage(t.toString()));
-            fc.addMessage(null, AUTHENTICATION_FAILURE);
-            return "login";
+            addException(e);
+            return "ERROR";
         }
+    }
 
+    public String logoutAction() {
+        if (user != null)
+            addMessage("User %s logged out", user.getNick());
+        user = null;
+        userid = null;
+        password = null;
+        return "OK";
     }
 }

@@ -6,14 +6,10 @@ import java.util.Iterator;
 
 import javax.ejb.Stateless;
 
-import org.jboss.logging.Logger;
-
 import com.iesemilidarder.anb00.entities.User;
 
 @Stateless
 public class UserCRUDImpl extends CRUDImpl<Long, User> implements UserLocal {
-
-    private static final Logger log = Logger.getLogger(UserCRUDImpl.class);
 
     public UserCRUDImpl() {
         super(User.class);

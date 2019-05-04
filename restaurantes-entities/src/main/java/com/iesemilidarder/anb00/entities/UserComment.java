@@ -1,5 +1,7 @@
 package com.iesemilidarder.anb00.entities;
+import java.io.Serializable;
 
+import java.util.Date;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -10,9 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 public class UserComment implements Serializable {
@@ -76,8 +75,7 @@ public class UserComment implements Serializable {
     public String toString() {
         final int max_len = 20;
         StringBuffer sb = new StringBuffer();
-        sb.append("[" + id + "]: User = " + getUser()).append(", Restaurant = " + getRestaurant())
-                .append(", Texto = " + getTexto().substring(0, max_len));
+        sb.append("[" + id + "]: Texto = " + getTexto().substring(0, max_len));
         if (getTexto().length() > max_len)
             sb.append("...");
         return sb.toString();

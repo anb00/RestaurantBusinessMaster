@@ -5,134 +5,106 @@
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
     <title></title>
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/Style.css"/> -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/Style.css" />
 
 </h:head>
 <h:body>
-    <!--<div class="navbar navbar-expand-lg navbar-light bg-blue" style="background-color: black;">
-
-        <a class="navbar-brand a" href="#" style="color: white;">Título Superior</a>
-<div class="authBox">
-    <a href="login.xhtml">Login</a> | <a href="faces/index.faces">Index</a>
-</div>
-    </div>
-    <div class="navbar navbar-expand-lg navbar-light bg-light" style="">
-        <h4>titulo inferior</h4>
-
-    </div>
-    <br>
-
-    </br> -->
-
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col-2">
-
-            </div>
-<div class="col-sm-8">
-
-    <br/>
-    <br/>
-<div style="text-align: center;">
-    <br/>
-</div> -->
-    <fieldset><legend>USER REGISTRATIO</legend>
-
-                <h:form Class="registration-anb">
-
-
-                    <table>
-                        <tr>
-                            <td>Nickname:</td>
-                            <td>
-                                <h:inputText label="Nick"
-                                             id="nick" value="#{userFormBackend.user.nick}"
-                                             required="true" Class="form-control"/>
-                                <h:message for="nick" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Password:</td>
-                            <td>
-                                <h:inputText label="Password"
-                                             id="pass1" value="#{userFormBackend.password}"
-                                             required="true" Class="form-control"/>
-                                <h:message for="pass1" />
-                            </td>
-                        </tr>
-                        <!--<tr>
-                            <td>Password (repeat):</td>
-                            <td>
-                                <h:inputText label="Password"
-                                             id="pass2" value="#{userFormBackend.password2}"
-                                             required="true" Class="form-control" />
-                                <h:message for="pass2" />
-                            </td>
-                        </tr> -->
-                        <tr>
-                            <td>First Name:</td>
-                            <td>
-                                <h:inputText label="First Name"
-                                             id="fname" value="#{userFormBackend.user.firstName}"
-                                             required="true" Class="form-control"/>
-                                <h:message for="fname" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Last Name:</td>
-                            <td>
-                                <h:inputText label="Last Name"
-                                             id="lname" value="#{userFormBackend.user.lastName}"
-                                             required="true" Class="form-control"/>
-                                <h:message for="lname" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Sex:</td>
-                            <td>
-                                <h:selectOneRadio label="Sex"
-                                                  id="sex" value="#{userFormBackend.user.sex}"
-                                                  required="true">
-                                    <f:selectItem itemLabel="Male" itemValue="MALE"/>
-                                    <f:selectItem itemLabel="Female" itemValue="FEMALE"/>
-                                </h:selectOneRadio>
-                                <h:message for="sex"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Date of Birth:</td>
-                            <td>
-                                <h:inputText label="Date of Birth"
-                                             id="dob" value="#{userFormBackend.user.dob}" required="true" Class="form-control">
-                                    <f:convertDateTime pattern="dd-MM-yy" />
-                                </h:inputText>
-                                (dd-MM-yy)
-                                <h:message for="dob"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Email Address:</td>
-                            <td>
-                                <h:inputText label="Email Address"
-                                             id="email" value="#{userFormBackend.user.email}"
-                                             required="true"
-                                             validator="#{userFormBackend.validateEmail}" Class="form-control"/>
-                                <h:message for="email"/>
-                            </td>
-                        </tr>
-                    </table>
-                    <p>
-                        <h:messages/>
-                    </p>
-                    <p>
-                        <h:commandButton value="Register" action="#{userFormBackend.addConfirmedUser}" styleClass="btn btn-primary"/>
-                    </p>
-                    <p>
-                        <h:commandButton value="Cancel" action="main" immediate="true" />
-                    </p>
-                </h:form>
-    </fieldset>
-
+    <h:form>
+        <h:outputText value="User: "
+                      rendered="#{loginFormBackend.user eq null}" />
+        <h:inputText id="user" label="User: "
+                     value="#{loginFormBackend.userid}"
+                     required="true"
+                     rendered="#{loginFormBackend.user eq null}" />
+        <h:message for="user" />
+        <h:outputText value="Pass: "
+                      rendered="#{loginFormBackend.user eq null}" />
+        <h:inputSecret id="pass" label="Pass: "
+                       value="#{loginFormBackend.password}"
+                       required="true"
+                       rendered="#{loginFormBackend.user eq null}" />
+        <h:message for="pass" />
+        <h:outputText rendered="#{loginFormBackend.user ne null}"
+                      value="Hi, #{loginFormBackend.user} (#{loginFormBackend.user.nick})" />
+        <h:commandButton action="#{loginFormBackend.loginAction}"
+                         class="navright_login_button" value="Login"
+                         rendered="#{loginFormBackend.user eq null}" />
+        <h:commandButton action="#{loginFormBackend.logoutAction}"
+                         class="navright_login_button" value="Logout"
+                         rendered="#{loginFormBackend.user ne null}" />
+        <h:button outcome="index" value="Main Page" />
+    </h:form>
+    <hr />
+    <h2 class="form-signin-heading">User Registration</h2>
+    <h6>
+        <i>Create you Account</i>
+    </h6>
+    <h:form>
+        <table>
+            <tr>
+                <td>Nickname:</td>
+                <td><h:inputText label="Nick" id="nick"
+                                 value="#{userFormBackend.user.nick}" required="true"
+                                 class="form-control" /> <h:message for="nick" /></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><h:inputSecret label="Password" id="pass1"
+                                   value="#{userFormBackend.password}" required="true"
+                                   class="form-control" /> <h:message for="pass1" /></td>
+            </tr>
+            <tr>
+                <td>Password (repeat):</td>
+                <td><h:inputSecret label="Password" id="pass2"
+                                   value="#{userFormBackend.password2}" required="true"
+                                   class="form-control" /> <h:message for="pass2" /></td>
+            </tr>
+            <tr>
+                <td>First Name:</td>
+                <td><h:inputText label="First Name" id="fname"
+                                 value="#{userFormBackend.user.firstName}" required="true"
+                                 class="form-control" /> <h:message for="fname" /></td>
+            </tr>
+            <tr>
+                <td>Last Name:</td>
+                <td><h:inputText label="Last Name" id="lname"
+                                 value="#{userFormBackend.user.lastName}" required="true"
+                                 class="form-control" /> <h:message for="lname" /></td>
+            </tr>
+            <tr>
+                <td>Sex:</td>
+                <td><h:selectOneRadio label="Sex" id="sex"
+                                      value="#{userFormBackend.user.sex}" required="true">
+                    <f:selectItem itemLabel="Male" itemValue="MALE" />
+                    <f:selectItem itemLabel="Female" itemValue="FEMALE" />
+                </h:selectOneRadio> <h:message for="sex" /></td>
+            </tr>
+            <tr>
+                <td>Date of Birth:</td>
+                <td><h:inputText label="Date of Birth" id="dob"
+                                 value="#{userFormBackend.user.dob}" required="true"
+                                 Class="form-control">
+                    <f:convertDateTime pattern="dd-MM-yy" />
+                </h:inputText> (dd-MM-yy) <h:message for="dob" /></td>
+            </tr>
+            <tr>
+                <td>Email Address:</td>
+                <td><h:inputText label="Email Address" id="email"
+                                 value="#{userFormBackend.user.email}" required="true"
+                                 validator="#{userFormBackend.validateEmail}" Class="form-control" />
+                    <h:message for="email" /></td>
+            </tr>
+        </table>
+        <p>
+            <h:messages />
+        </p>
+        <p>
+            <h:commandButton value="register"
+                             action="#{userFormBackend.addConfirmedUser}"
+                             styleClass="btn btn-primary" />
+        </p>
+    </h:form>
 </h:body>
 </html>

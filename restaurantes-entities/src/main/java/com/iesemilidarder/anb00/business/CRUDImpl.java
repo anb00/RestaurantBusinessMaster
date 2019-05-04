@@ -1,7 +1,7 @@
 package com.iesemilidarder.anb00.business;
 
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
@@ -42,17 +42,17 @@ public class CRUDImpl<K, T> implements CRUD<K, T> {
     };
 
     @Override
-    public Collection<T> retrieveAll() throws CRUDException {
+    public List<T> retrieveAll() throws CRUDException {
         return retrieveAll(0, 0);
     }
 
     @Override
-    public Collection<T> retrieveAll(int first, int count) throws CRUDException {
+    public List<T> retrieveAll(int first, int count) throws CRUDException {
         return retrieveWhere(first, count, SELECT_ALL);
     }
 
     @Override
-    public Collection<T> retrieveWhere(int first, int count, String hql_statement, Object... hql_args)
+    public List<T> retrieveWhere(int first, int count, String hql_statement, Object... hql_args)
             throws CRUDException {
         try {
             TypedQuery<T> q = em.createQuery(hql_statement, cl);
@@ -71,7 +71,7 @@ public class CRUDImpl<K, T> implements CRUD<K, T> {
     }
 
     @Override
-    public Collection<T> retrieveWhere(String where, Object... args) throws CRUDException {
+    public List<T> retrieveWhere(String where, Object... args) throws CRUDException {
         return retrieveWhere(0, 0, where, args);
     }
 
