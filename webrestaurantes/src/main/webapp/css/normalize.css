@@ -425,7 +425,9 @@ td,
 th {
   padding: 0;
 }
-
+.grey {
+  background-color: #1EAEDB;
+}
 #thumbnail {
   width: 280px;
   height: 250px;

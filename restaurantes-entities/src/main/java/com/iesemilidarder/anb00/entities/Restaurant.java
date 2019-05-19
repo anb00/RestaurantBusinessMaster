@@ -3,14 +3,10 @@ package com.iesemilidarder.anb00.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
+@SequenceGenerator(name="RESTAURANT_GEN", sequenceName = "REST_SEQ")
 public class Restaurant implements Serializable {
 
     private static final long serialVersionUID = 1878061099776559468L;
@@ -25,7 +21,7 @@ public class Restaurant implements Serializable {
     Collection<UserComment> comments;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "RESTAURANT_GEN")
     public long getId() {
         return id;
     }
