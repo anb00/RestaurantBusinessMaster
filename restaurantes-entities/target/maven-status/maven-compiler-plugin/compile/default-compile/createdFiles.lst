@@ -1,0 +1,15 @@
+com\iesemilidarder\anb00\business\AuthenticationException.class
+com\iesemilidarder\anb00\entities\Cathegory.class
+com\iesemilidarder\anb00\entities\Restaurant.class
+com\iesemilidarder\anb00\business\UserCommentCRUDImpl.class
+com\iesemilidarder\anb00\business\RestaurantCRUDImpl.class
+com\iesemilidarder\anb00\entities\Sex.class
+com\iesemilidarder\anb00\business\CRUD.class
+com\iesemilidarder\anb00\entities\UserComment.class
+com\iesemilidarder\anb00\entities\User.class
+com\iesemilidarder\anb00\business\CRUDException.class
+com\iesemilidarder\anb00\business\RestaurantLocal.class
+com\iesemilidarder\anb00\business\UserCRUDImpl.class
+com\iesemilidarder\anb00\business\CRUDImpl.class
+com\iesemilidarder\anb00\business\UserCommentLocal.class
+com\iesemilidarder\anb00\business\UserLocal.class

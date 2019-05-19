@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+    <title>Index of Restaurants</title>
+    <meta name="description" content="" />
+    <meta name="author" content="anb" />
+
+    <!-- Mobile Specific Metas
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- FONT Awesome for Free - Icons
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+   <!-- <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" /> -->
+
+  <!--  <link rel="stylesheet" type="text/css" href="css/clean.css" /> -->
+
+    <!-- CSS Skeleton Framework, Bootstrap and Personal CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+   <link rel="stylesheet"
+          href="css/css.css" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+
+
+
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Poiret+One|Tajawal|Pirata+One" rel="stylesheet" />
+
+ -->
+</h:head>
+<h:body>
+
+        <h4 class="eur" style="font-family: 'Poiret one';">WEB RESTAURANTES</h4>
+        <h6 >Exclusive Site for Comment Best restaurants</h6>
+
+
+
+
+
+
+
+    <h:form class="">
+        <h:outputText value="User: "
+                      rendered="#{loginFormBackend.user eq null}" />
+        <h:inputText id="user" label="User: "
+                     value="#{loginFormBackend.userid}" required="true"
+                     rendered="#{loginFormBackend.user eq null}"/>
+        <h:message for="user" />
+        <h:outputText value="Pass: "
+                      rendered="#{loginFormBackend.user eq null}" />
+        <h:inputSecret id="pass" label="Pass: "
+                       value="#{loginFormBackend.password}" required="true"
+                       rendered="#{loginFormBackend.user eq null}" />
+        <h:message for="pass" />
+        <h:outputText rendered="#{loginFormBackend.user ne null}"
+                      value="Hi, #{loginFormBackend.user.firstName} #{loginFormBackend.user.lastName}(#{loginFormBackend.user.nick})" />
+        <h:commandButton action="#{loginFormBackend.loginAction}"
+                         class="btn " value="Login"
+                         rendered="#{loginFormBackend.user eq null}" />
+        <h:commandButton action="#{loginFormBackend.logoutAction}"
+                         class="navright_login_button btn-primary" value="Logout"
+                         rendered="#{loginFormBackend.user ne null}" />
+        <h:button outcome="register" class="btn btn-warning"
+                  value="Register" />
+    </h:form>
+
+
+    <hr />
+    <div class="container">
+
+        <form action="" >
+        <input type="text"  style="width: 450px;" value="Search for a Good Restaurant"/><select >
+        <option class="">ONE_FORK</option>
+        <option class="">TWO_FORKS</option>
+    </select>
+        <input type="submit"  value="SEARCH" id="grey" class="btn btn-danger" />
+        </form>
+
+
+
+    <!-- Primary Page Layout
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <!-- .container is main centered wrapper -->
+
+
+            <div class="ten columns ">
+
+                <table class="table table-striped">
+                <h:dataTable value="#{restaurantFormBackend.list}" var="item"
+                             border="1" id="eh" class="table table-striped">
+                    <h:column>
+                      <f:facet name="header">IMAGE</f:facet>
+                        <h:graphicImage url="#{item.imageUrl}"
+                                        rendered="#{item.imageUrl ne null}"  width="350" class="img-fluid" alt="Registered" />  <!-- class="avatar" / -->
+                                <a href="#" class="btn btn-primary">Rate this</a>
+
+
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        <h:link outcome="restaurant" value="#{item.id}">
+                            <f:param name="ID" value="#{item.id}" />
+                        </h:link>
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">NAME</f:facet>
+                        <h:link outcome="restaurant" value="#{item.name}">
+                            <f:param name="ID" value="#{item.id}" />
+                        </h:link>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">LOCATION</f:facet>
+                        <h:outputText value="#{item.location}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">CATEGORY</f:facet>
+                        <h:outputText value="#{item.cathegory}" />
+                    </h:column>
+                </h:dataTable>
+                </table>
+            </div>
+        </div>
+    <div class="footer">
+        <div class="foot-fixed-bottom">
+            <div class="container" align="right">
+               WEBRESTAURANTES-0.0.1-SNAPSHOT / 2019 / ASIX
+            </div>
+        </div>
+    </div>
+
+</h:body>
+</html>
