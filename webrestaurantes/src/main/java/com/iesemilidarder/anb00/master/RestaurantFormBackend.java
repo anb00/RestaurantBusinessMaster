@@ -1,6 +1,5 @@
 package com.iesemilidarder.anb00.master;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -68,7 +67,6 @@ public class RestaurantFormBackend extends BackendBaseClass {
     public List<UserComment> getUserComments() {
         try {
             if (userComments == null) {
-                userComments = new ArrayList<UserComment>();
                 if (id != null) {
                     userComments = userCommentLocal.retrieveWhere(
                             "SELECT UC FROM UserComment AS UC WHERE UC.restaurant.id = ?0 ORDER BY UC.timestamp DESC",

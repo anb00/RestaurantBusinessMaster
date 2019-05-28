@@ -1,11 +1,5 @@
 package com.iesemilidarder.anb00.master;
 
-
-import com.iesemilidarder.anb00.business.AuthenticationException;
-import com.iesemilidarder.anb00.business.UserLocal;
-import com.iesemilidarder.anb00.entities.User;
-
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

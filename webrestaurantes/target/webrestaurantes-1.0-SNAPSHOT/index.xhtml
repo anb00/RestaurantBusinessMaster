@@ -2,113 +2,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-    <!-- Basic Page Needs
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
-    <title>Index of Restaurants</title>
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-
-    <!-- Mobile Specific Metas
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- FONT Awesome for Free - Icons
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
-    <link rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
-
-    <link rel="stylesheet" type="text/css" href="css/clean.css" />
-
-    <!-- CSS Skeleton Framework, Bootstrap and Personal CSS
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/skeleton.css" />
-
-
-    <!-- Favicon
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
-
-</h:head>
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
+    <ui:composition template="/template.xhtml">
+        <ui:define name="page_title">Restaurants Application</ui:define>
 
-    <h:form>
-        <h:outputText value="User: "
-                      rendered="#{loginFormBackend.user eq null}" />
-        <h:inputText id="user" label="User: "
-                     value="#{loginFormBackend.userid}" required="true"
-                     rendered="#{loginFormBackend.user eq null}" />
-        <h:message for="user" />
-        <h:outputText value="Pass: "
-                      rendered="#{loginFormBackend.user eq null}" />
-        <h:inputSecret id="pass" label="Pass: "
-                       value="#{loginFormBackend.password}" required="true"
-                       rendered="#{loginFormBackend.user eq null}" />
-        <h:message for="pass" />
-        <h:outputText rendered="#{loginFormBackend.user ne null}"
-                      value="Hi, #{loginFormBackend.user.firstName} #{loginFormBackend.user.lastName}(#{loginFormBackend.user.nick})" />
-        <h:commandButton action="#{loginFormBackend.loginAction}"
-                         class="navright_login_button" value="Login"
-                         rendered="#{loginFormBackend.user eq null}" />
-        <h:commandButton action="#{loginFormBackend.logoutAction}"
-                         class="navright_login_button" value="Logout"
-                         rendered="#{loginFormBackend.user ne null}" />
-        <h:button outcome="register" class="navright_login_button"
-                  value="Register" />
-    </h:form>
-    <h3 class="heading">Logo Goes Here</h3>
-    <hr />
+        <ui:define name="page_left">
+            <h2>Menu</h2>
+            <ul>
+                <li><h:link outcome="register" value="Register" /></li>
+            </ul>
+        </ui:define>
 
-
-    <!-- Primary Page Layout
-        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <!-- .container is main centered wrapper -->
-    <div class="container">
-        <div class="row">
-            <div class="ten columns">
-                <!-- <h:form rendered="#{restaurantFormBackend.list != null}"> -->
-                <table id="e table">
-                    <h:dataTable value="#{restaurantFormBackend.list}" var="item"
-                                 border="1" id="e" class="table">
-                        <h:column>
-                            <f:facet name="header">IMAGE</f:facet>
-                            <h:graphicImage url="#{item.imageUrl}"
-                                            rendered="#{item.imageUrl ne null}"  width="220" id="thumbnail" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">ID</f:facet>
-                            <h:link outcome="restaurant" value="#{item.id}">
-                                <f:param name="ID" value="#{item.id}" />
-                            </h:link>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">NAME</f:facet>
-                            <!-- <h:link outcome="restaurant" value="#{item.name}">
-                                 <f:param name="Name" value="#{item.name}" /> -->
-                            <h:outputText value="#{item.name}" />
-                            <!--  </h:link> -->
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">LOCATION</f:facet>
-                            <h:outputText value="#{item.location}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">CATEGORY</f:facet>
-                            <h:outputText value="#{item.cathegory}" />
-                        </h:column>
-                    </h:dataTable>
-                </table>
+        <ui:define name="page_middle">
+            <div class="container">
+                <div class="row">
+                    <div class="ten columns">
+                        <!-- <h:form rendered="#{restaurantFormBackend.list != null}"> -->
+                        <h:dataTable value="#{restaurantFormBackend.list}" var="item"
+                                     border="1">
+                            <h:column>
+                                <f:facet name="header">Image</f:facet>
+                                <h:graphicImage url="#{item.imageUrl}" width="128"
+                                                rendered="#{item.imageUrl ne null}" />
+                                <h:graphicImage url="img/default_image.jpeg"
+                                                rendered="#{item.imageUrl eq null}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Name</f:facet>
+                                <h:link outcome="restaurant" value="#{item.name}">
+                                    <f:param name="ID" value="#{item.id}" />
+                                </h:link>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Location</f:facet>
+                                <h:outputText value="#{item.location}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">CAT/RAT</f:facet>
+                                <h:outputText value="#{item.cathegory}" />
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </ui:define>
+    </ui:composition>
 </h:body>
-
 </html>
