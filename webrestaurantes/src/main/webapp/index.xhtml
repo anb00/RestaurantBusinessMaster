@@ -10,12 +10,7 @@
 	<ui:composition template="/template.xhtml">
 		<ui:define name="page_title">Restaurants Application</ui:define>
 		
-		<!--<ui:define name="page_left">-->
-			<!--<h2>Menu</h2>-->
-			<!--<ul>				-->
-				<!--<li><h:link outcome="register" value="Register" /></li>-->
-			<!--</ul>-->
-		<!--</ui:define>-->
+
 		
 		<ui:define name="page_middle">
 			<div class="container">
@@ -23,25 +18,16 @@
 					<div class="ten columns">
 						<div align="center">
 												<strong><span style="font-size:20px;color: #001;">HERE YOU CAN FIND A GOOD RESTAURANT FOR EAT</span></strong>
-						<!-- <h:form rendered="#{restaurantFormBackend.list != null}"> -->
 <table class="table1">
-						<!--<thead>-->
-						<!--<tr>-->
-							<!--<th style="background: #110000;text-shadow: 1px 1px 2px yellow">IMAGE</th>-->
-							<!--<th style="background: #220000;text-shadow: 1px 1px 2px black">NAME</th>-->
-							<!--<th style="background: #330000;text-shadow: 1px 1px 2px black">LOCATION</th>-->
-							<!--<th style="background: #440000;text-shadow: 1px 1px 2px black">CATHEGORY</th>-->
 
-						<!--</tr>-->
-						<!--</thead>-->
 	<tbody>
 
 						<h:dataTable value="#{restaurantFormBackend.list}" var="item"
 							border="0">
 
 							<h:column>
-								<f:facet name="header"  style="background: #110000;text-shadow: 1px 1px 2px yellow;">Image</f:facet>
-								<h:graphicImage url="#{item.imageUrl}" width="128"
+								<div style="background: #110000;text-shadow: 1px 1px 2px yellow;"><f:facet name="header"  >Image</f:facet></div>
+								<h:graphicImage url="#{item.imageUrl}" width="258"
 									rendered="#{item.imageUrl ne null}" />
 								<h:graphicImage url="img/default_image.jpeg"
 									rendered="#{item.imageUrl eq null}" />

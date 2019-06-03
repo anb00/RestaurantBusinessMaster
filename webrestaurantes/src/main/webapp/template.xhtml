@@ -32,50 +32,64 @@
 	<div align="center">
 		<ul class="nav">
 
-			<h:outputText style="font-size:35px;color: #07427c">WEB RESTAURANTS</h:outputText>
+			<h:outputText style="font-size:35px;color: #07427c;font-family: san-serif;">WEB RESTAURANTS</h:outputText>
+
 
 		</ul>
 
+
 	</div>
 	<div class="topheader" style="background-color: #000;color: white;height: 80px;">
-		<table width="100%" >
+		<table >
 			<tr>
-				<td class="logo" width="15%" style="text-align: center"><h:graphicImage
-						url="/img/logo.jpeg" width="100" /></td>
+				<!--<td class="logo" width="15%" style="text-align: center"><h:graphicImage-->
+						<!--url="/img/logo.jpeg" width="100" /></td>-->
 				<td  style="text-align: center">
-						<h1>
+						<h2>
 							<ui:insert name="page_title">&nbsp;</ui:insert>
-						</h1>
-					</td>
+						</h2>
+					<hr>
 
-				<td class="login"  style="text-align: center"><h:form styleClass="form-horizontal">
+					</hr>
+
+
+				</td>
+
+				<td style="text-align: right">
+					<h:form >
 						<c:choose>
 							<c:when test="#{loginFormBackend.user eq null}">
-								<h:panelGrid columns="3" columnClasses="field,value">
+								<table>
+									<tr>
 									<h:outputText value="User: " />
 									<h:inputText id="userid" label="User"
-										value="#{loginFormBackend.userid}" required="true" />
-									<h:message for="userid" />
+												 value="#{loginFormBackend.userid}" required="true" styleClass="btn" />
+									<h:message for="userid" style="font-size: 14px;color:white;" />
+									</tr>
+									<tr>
 									<h:outputText value="Pass: " />
 									<h:inputSecret id="password" label="Pass"
-										value="#{loginFormBackend.password}" required="true" />
+												   value="#{loginFormBackend.password}" required="true" styleClass="btn"  />
 									<h:message for="password" />
-								</h:panelGrid>
-								<h:panelGrid>
+
+
+
 
 									<h:commandButton action="#{loginFormBackend.loginAction}"
-										class="btn btn-success" value="Login" />
-								</h:panelGrid>
+													 class="btn btn-success" value="Login" />
+									</tr>
+								</table>
 							</c:when>
 							<c:otherwise>
 								<h:outputText
-									value="Hi, #{loginFormBackend.user} (#{loginFormBackend.user.nick})" />
+										value="Hi, #{loginFormBackend.user} (#{loginFormBackend.user.nick})" />
 								<h:commandButton action="#{loginFormBackend.logoutAction}"
-									class="navright_login_button" value="Logout" />
+												 class="btn btn" value="Logout" />
 							</c:otherwise>
 						</c:choose>
 					</h:form>
 				</td>
+
 				<td>
 					&nbsp;
 				</td>
@@ -90,13 +104,20 @@
 &nbsp;
 </br>
 	<div class="body">
+		<div class="topheader">
+
+		</div>
 		<div class="header_bottom_right">
 			<div class="h_menu4">
 				<a class="toggleMenu" href="#">Menu</a>
+				<a href="index.xhtml">Main</a>
+				<a href="register.xhtml">Register a user</a>
 				<ul class="nav">
 
-					<li><button class="btn btn-default">USER REGISTRATION</button></li>
-					<li><button class="btn btn-default">RESTAURANT REGISTRATION</button></li>
+					<li><a href="index.xhtml"><h:commandButton action="reg.xhtml" class="btn btn-default"  value="CREATE A REST" /></a> </li>
+					<li><a href="register.xhtml"><h:commandButton action="register.xhtml" class="btn btn-default"  value="USER REGISTRATION" /></a> </li>
+					<li><a href="index.xhtml"><h:commandButton action="index.xhtml" class="btn btn-default"  value="MAIN" /> </a></li>
+					<!--<li><button class="btn btn-default" >RESTAURANT class="btn btn-default"REGISTRATION</button></li>-->
 
 
 				</ul>
@@ -109,12 +130,12 @@
 			<tr>
 				<!--<td class="body_left"><ui:insert name="page_left" /></td>-->
 				<td class="container"><ui:insert name="page_middle" /></td>
-				<td class="body_right"><ui:insert name="page_right" /></td>
+				<!--<td class="body_right"><ui:insert name="page_right" /></td>-->
 			</tr>
 		</table>
 	</div>
 	<div class="footer">
-		<div>(c) 2019 Antonio Nicolau Batle</div>
+		<div>(c) 2019 Antonio Nicolau Batle </div>
 		<h:messages globalOnly="true" />
 		<ui:debug />
 	</div>
