@@ -2,54 +2,72 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
-    <ui:composition template="/template.xhtml">
-        <ui:define name="page_title">Restaurants Application</ui:define>
+	<ui:composition template="/template.xhtml">
+		<ui:define name="page_title">Restaurants Application</ui:define>
+		
+		<!--<ui:define name="page_left">-->
+			<!--<h2>Menu</h2>-->
+			<!--<ul>				-->
+				<!--<li><h:link outcome="register" value="Register" /></li>-->
+			<!--</ul>-->
+		<!--</ui:define>-->
+		
+		<ui:define name="page_middle">
+			<div class="container">
+				<div class="row">
+					<div class="ten columns">
+						<div align="center">
+												<strong><span style="font-size:20px;color: #001;">HERE YOU CAN FIND A GOOD RESTAURANT FOR EAT</span></strong>
+						<!-- <h:form rendered="#{restaurantFormBackend.list != null}"> -->
+<table class="table1">
+						<!--<thead>-->
+						<!--<tr>-->
+							<!--<th style="background: #110000;text-shadow: 1px 1px 2px yellow">IMAGE</th>-->
+							<!--<th style="background: #220000;text-shadow: 1px 1px 2px black">NAME</th>-->
+							<!--<th style="background: #330000;text-shadow: 1px 1px 2px black">LOCATION</th>-->
+							<!--<th style="background: #440000;text-shadow: 1px 1px 2px black">CATHEGORY</th>-->
 
-        <ui:define name="page_left">
-            <h2>Menu</h2>
-            <ul>
-                <li><h:link outcome="register" value="Register" /></li>
-            </ul>
-        </ui:define>
+						<!--</tr>-->
+						<!--</thead>-->
+	<tbody>
 
-        <ui:define name="page_middle">
-            <div class="container">
-                <div class="row">
-                    <div class="ten columns">
-                        <!-- <h:form rendered="#{restaurantFormBackend.list != null}"> -->
-                        <h:dataTable value="#{restaurantFormBackend.list}" var="item"
-                                     border="1">
-                            <h:column>
-                                <f:facet name="header">Image</f:facet>
-                                <h:graphicImage url="#{item.imageUrl}" width="128"
-                                                rendered="#{item.imageUrl ne null}" />
-                                <h:graphicImage url="img/default_image.jpeg"
-                                                rendered="#{item.imageUrl eq null}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Name</f:facet>
-                                <h:link outcome="restaurant" value="#{item.name}">
-                                    <f:param name="ID" value="#{item.id}" />
-                                </h:link>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">Location</f:facet>
-                                <h:outputText value="#{item.location}" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">CAT/RAT</f:facet>
-                                <h:outputText value="#{item.cathegory}" />
-                            </h:column>
-                        </h:dataTable>
-                    </div>
-                </div>
-            </div>
-        </ui:define>
-    </ui:composition>
+						<h:dataTable value="#{restaurantFormBackend.list}" var="item"
+							border="0">
+
+							<h:column>
+								<f:facet name="header"  style="background: #110000;text-shadow: 1px 1px 2px yellow;">Image</f:facet>
+								<h:graphicImage url="#{item.imageUrl}" width="128"
+									rendered="#{item.imageUrl ne null}" />
+								<h:graphicImage url="img/default_image.jpeg"
+									rendered="#{item.imageUrl eq null}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header" class="c" style="background: #220000;text-shadow: 1px 1px 2px black">Name</f:facet>
+								<h:link outcome="restaurant" value="#{item.name}">
+									<f:param name="ID" value="#{item.id}" />
+								</h:link>
+							</h:column>
+							<h:column>
+								<f:facet name="header" style="background: #330000;text-shadow: 1px 1px 2px black">Location</f:facet>
+								<h:outputText value="#{item.location}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header" class="c" style="background: #440000;text-shadow: 1px 1px 2px black;">CAT/RAT</f:facet>
+								<h:outputText value="#{item.cathegory}" />
+							</h:column>
+						</h:dataTable>
+	</tbody>
+</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

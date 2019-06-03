@@ -1,88 +1,88 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
-    <ui:composition template="template.xhtml">
-        <ui:define name="page_title">User Registration Form</ui:define>
-        <ui:define name="page_viewparam">
-            <f:viewParam name="id" />
-        </ui:define>
-
-        <ui:define name="page_left">
-            <h2>Menu</h2>
-            <ul>
-                <li><h:link outcome="index" value="Main Page" /></li>
-            </ul>
-        </ui:define>
-
-        <ui:define name="page_middle">
-            <h:form>
-                <table>
-                    <tr>
-                        <td>Nickname:</td>
-                        <td><h:inputText label="Nick" id="nick"
-                                         value="#{userFormBackend.user.nick}" required="true"
-                                         class="form-control" /> <h:message for="nick" class="warning"/></td>
-                    </tr>
-                    <tr>
-                        <td>Password:</td>
-                        <td><h:inputSecret label="Password" id="pass1"
-                                           value="#{userFormBackend.password}" required="true"
-                                           class="form-control" /> <h:message for="pass1" class="warning" /></td>
-                    </tr>
-                    <tr>
-                        <td>Password (repeat):</td>
-                        <td><h:inputSecret label="Password" id="pass2"
-                                           value="#{userFormBackend.password2}" required="true"
-                                           class="form-control" /> <h:message for="pass2" class="warning" /></td>
-                    </tr>
-                    <tr>
-                        <td>First Name:</td>
-                        <td><h:inputText label="First Name" id="fname"
-                                         value="#{userFormBackend.user.firstName}" required="true"
-                                         class="form-control" /> <h:message for="fname" class="warning" /></td>
-                    </tr>
-                    <tr>
-                        <td>Last Name:</td>
-                        <td><h:inputText label="Last Name" id="lname"
-                                         value="#{userFormBackend.user.lastName}" required="true"
-                                         class="form-control" /> <h:message for="lname" class="warning" /></td>
-                    </tr>
-                    <tr>
-                        <td>Sex:</td>
-                        <td><h:selectOneRadio label="Sex" id="sex"
-                                              value="#{userFormBackend.user.sex}">
-                            <f:selectItem itemLabel="Male" itemValue="MALE" />
-                            <f:selectItem itemLabel="Female" itemValue="FEMALE" />
-                        </h:selectOneRadio> <h:message for="sex" class="warning" /></td>
-                    </tr>
-                    <tr>
-                        <td>Date of Birth:</td>
-                        <td><h:inputText label="Date of Birth" id="dob"
-                                         value="#{userFormBackend.user.dob}" required="true"
-                                         Class="form-control">
-                            <f:convertDateTime pattern="dd-MM-yy" />
-                        </h:inputText> (dd-MM-yy) <h:message for="dob" class="warning" /></td>
-                    </tr>
-                    <tr>
-                        <td>Email Address:</td>
-                        <td><h:inputText label="Email Address" id="email"
-                                         value="#{userFormBackend.user.email}" required="true"
-                                         validator="#{userFormBackend.validateEmail}"
-                                         Class="form-control" /> <h:message for="email" class="warning" /></td>
-                    </tr>
-                </table>
-                <p>
-                    <h:commandButton value="Ok"
-                                     action="#{userFormBackend.addConfirmedUser}"
-                                     styleClass="btn btn-primary" />
-                </p>
-            </h:form>
-        </ui:define>
-    </ui:composition>
+	<ui:composition template="template.xhtml">
+		<ui:define name="page_title">User Registration Form</ui:define>
+		<ui:define name="page_viewparam">
+			<f:viewParam name="id" />
+		</ui:define>
+		
+		<ui:define name="page_left">
+			<h2>Menu</h2>
+			<ul>				
+				<li><h:link outcome="index" value="Main Page" /></li>
+			</ul>
+		</ui:define>
+		
+		<ui:define name="page_middle">
+			<h:form>
+				<table>
+					<tr>
+						<td>Nickname:</td>
+						<td><h:inputText label="Nick" id="nick"
+								value="#{userFormBackend.user.nick}" required="true"
+								class="form-control" /> <h:message for="nick" class="warning"/></td>
+					</tr>
+					<tr>
+						<td>Password:</td>
+						<td><h:inputSecret label="Password" id="pass1"
+								value="#{userFormBackend.password}" required="true"
+								class="form-control" /> <h:message for="pass1" class="warning" /></td>
+					</tr>
+					<tr>
+						<td>Password (repeat):</td>
+						<td><h:inputSecret label="Password" id="pass2"
+								value="#{userFormBackend.password2}" required="true"
+								class="form-control" /> <h:message for="pass2" class="warning" /></td>
+					</tr>
+					<tr>
+						<td>First Name:</td>
+						<td><h:inputText label="First Name" id="fname"
+								value="#{userFormBackend.user.firstName}" required="true"
+								class="form-control" /> <h:message for="fname" class="warning" /></td>
+					</tr>
+					<tr>
+						<td>Last Name:</td>
+						<td><h:inputText label="Last Name" id="lname"
+								value="#{userFormBackend.user.lastName}" required="true"
+								class="form-control" /> <h:message for="lname" class="warning" /></td>
+					</tr>
+					<tr>
+						<td>Sex:</td>
+						<td><h:selectOneRadio label="Sex" id="sex"
+								value="#{userFormBackend.user.sex}">
+								<f:selectItem itemLabel="Male" itemValue="MALE" />
+								<f:selectItem itemLabel="Female" itemValue="FEMALE" />
+							</h:selectOneRadio> <h:message for="sex" class="warning" /></td>
+					</tr>
+					<tr>
+						<td>Date of Birth:</td>
+						<td><h:inputText label="Date of Birth" id="dob"
+								value="#{userFormBackend.user.dob}" required="true"
+								Class="form-control">
+								<f:convertDateTime pattern="dd-MM-yy" />
+							</h:inputText> (dd-MM-yy) <h:message for="dob" class="warning" /></td>
+					</tr>
+					<tr>
+						<td>Email Address:</td>
+						<td><h:inputText label="Email Address" id="email"
+								value="#{userFormBackend.user.email}" required="true"
+								validator="#{userFormBackend.validateEmail}"
+								Class="form-control" /> <h:message for="email" class="warning" /></td>
+					</tr>
+				</table>
+				<p>
+					<h:commandButton value="Ok"
+						action="#{userFormBackend.addConfirmedUser}"
+						styleClass="btn btn-primary" />
+				</p>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>
