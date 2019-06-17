@@ -47,9 +47,6 @@
     width: 85%;
     padding: 0; }
 }
-.grey {
-  background-color: #1EAEDB;
-}
 
 /* For devices larger than 550px */
 @media (min-width: 550px) {

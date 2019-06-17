@@ -30,7 +30,7 @@
         </plugins>
     </build>
 
-    <!-- Every Module is a level in this proyect Core Or Back, DB, WEB FRON-->
+    <!-- Every Module is a level in this proyect Core Or Back, DB, WEB FRON -->
 
     <modules>
         <module>restaurantes-entities</module>

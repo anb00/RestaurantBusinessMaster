@@ -12,8 +12,8 @@
     z-index: 99999999999;
 
 }
-.hidden {
-    visibility:hidden;
+#content {
+    
 }
 #rightinnavbar {
     float: right;
@@ -30,22 +30,6 @@
     top: 4px;
     position: relative;
     cursor: pointer;
-}
-
-#e {
-    background-color: lightgrey;
-    border: 0px;
-
-}
-
-#thumbnail {
-    width: 220px;
-    height: 220px;
-    border:1px solid black;
-}
-
-.grey {
-    background-color: #1EAEDB;
 }
 
 

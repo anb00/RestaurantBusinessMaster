@@ -1,119 +1,119 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
-    <f:metadata>
-        <ui:insert name="page_metadata" />
-        <f:viewParam name="ID" value="#{restaurantFormBackend.id}"
-                     immediate="true" />
-    </f:metadata>
+	<f:metadata>
+		<ui:insert name="page_metadata" />
+		<f:viewParam name="ID" value="#{restaurantFormBackend.id}"
+			immediate="true" />
+	</f:metadata>
 </h:head>
 
 <h:body>
-    <ui:composition template="/template.xhtml">
+	<ui:composition template="/template.xhtml">
 
-        <ui:define name="page_title">#{restaurantFormBackend.restaurant.name}</ui:define>
+		<ui:define name="page_title">#{restaurantFormBackend.restaurant.name}</ui:define>
 
-        <ui:define name="page_left">
-            <h2>Menu</h2>
-            <ul>
-                <li><h:link outcome="register" value="Register" /></li>
-                <li><h:link outcome="index" value="Main Page" /></li>
-            </ul>
-        </ui:define>
+		<ui:define name="page_left">
+			<h2>Menu</h2>
+			<ul>
+				<li><h:link outcome="register" value="Register" /></li>
+				<li><h:link outcome="index" value="Main Page" /></li>
+			</ul>
+		</ui:define>
 
-        <ui:define name="page_middle">
-            <h:graphicImage url="#{restaurantFormBackend.restaurant.imageUrl}"
-                            rendered="#{restaurantFormBackend.restaurant.imageUrl ne null}"
-                            width="100" />
-            <table>
-                <!-- <tr>
-                    <td class="field_name"><h:outputText value="ID: " /></td>
-                    <td><h:outputText
-                            value="#{restaurantFormBackend.restaurant.id}" /></td>
-                </tr> -->
-                <thead>
-                <tr>
-                    <!-- <td class="field_name"><h:outputText value="Name: " /></td> -->
-                    <td colspan="2"><h:outputText
-                            value="#{restaurantFormBackend.restaurant.name}" /></td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="field_name"><h:outputText value="Cathegory: " /></td>
-                    <td><h:outputText
-                            value="#{restaurantFormBackend.restaurant.cathegory}" /></td>
-                </tr>
-                <tr>
-                    <td class="field_name"><h:outputText value="Location: " /></td>
-                    <td><h:outputText
-                            value="#{restaurantFormBackend.restaurant.location}" /></td>
-                </tr>
-                <tr>
-                    <td class="field_name"><h:outputText value="Description: " /></td>
-                    <td><h:outputText
-                            value="#{restaurantFormBackend.restaurant.description}" /></td>
-                </tr>
-                </tbody>
-            </table>
-            <div class="comments_title">
-                <h:outputText
-                        value="Comments for #{restaurantFormBackend.restaurant}" />
-            </div>
-            <c:choose>
-                <c:when test="#{restaurantFormBackend.userComments ne null}">
-                    <h:dataTable value="#{restaurantFormBackend.userComments}"
-                                 var="comm">
-                        <!-- <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="ID" />
-                            </f:facet>
-                            <h:outputText value="#{comm.id}" />
-                        </h:column> -->
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Fecha" />
-                            </f:facet>
-                            <h:outputText value="#{comm.timestamp}">
-                                <f:convertDateTime pattern="dd-MM-yy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Author" />
-                            </f:facet>
-                            <h:outputText value="#{comm.user}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Comment text" />
-                            </f:facet>
-                            <h:outputText value="#{comm.texto}" />
-                        </h:column>
-                    </h:dataTable>
-                    <h:form>
-                        <h:panelGrid columns="4">
-                            <h:outputText value="Comment: " />
-                            <h:inputTextarea id="comment" label="Comment"
-                                             value="#{restaurantFormBackend.newUserComment.texto}"
-                                             size="1024" required="true"
-                                             validator="#{restaurantFormBackend.validateComment}"
-                                             disabled="#{loginFormBackend.user eq null}" />
-                            <h:commandButton value="Add"
-                                             action="#{restaurantFormBackend.addUserCommentAction}"
-                                             disabled="#{loginFormBackend.user eq null}" />
-                            <h:message for="comment" class="warning" />
-                        </h:panelGrid>
-                    </h:form>
-                </c:when>
-            </c:choose>
-        </ui:define>
-    </ui:composition>
+		<ui:define name="page_middle">
+			<h:graphicImage url="#{restaurantFormBackend.restaurant.imageUrl}"
+				rendered="#{restaurantFormBackend.restaurant.imageUrl ne null}"
+				width="400" />
+			<table>
+				<!-- <tr>
+					<td class="field_name"><h:outputText value="ID: " /></td>
+					<td><h:outputText
+							value="#{restaurantFormBackend.restaurant.id}" /></td>
+				</tr> -->
+				<thead>
+					<tr>
+						<!-- <td class="field_name"><h:outputText value="Name: " /></td> -->
+						<td colspan="2"><h:outputText
+								value="#{restaurantFormBackend.restaurant.name}" /></td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="field_name"><h:outputText value="Cathegory: " /></td>
+						<td><h:outputText
+								value="#{restaurantFormBackend.restaurant.cathegory}" /></td>
+					</tr>
+					<tr>
+						<td class="field_name"><h:outputText value="Location: " /></td>
+						<td><h:outputText
+								value="#{restaurantFormBackend.restaurant.location}" /></td>
+					</tr>
+					<tr>
+						<td class="field_name"><h:outputText value="Description: " /></td>
+						<td><h:outputText
+								value="#{restaurantFormBackend.restaurant.description}" /></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="comments_title">
+				<h:outputText
+					value="Comments for #{restaurantFormBackend.restaurant}" />
+			</div>
+			<c:choose>
+				<c:when test="#{restaurantFormBackend.userComments ne null}">
+					<h:dataTable value="#{restaurantFormBackend.userComments}"
+						var="comm">
+						<!-- <h:column>
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText value="#{comm.id}" />
+						</h:column> -->
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Fecha" />
+							</f:facet>
+							<h:outputText value="#{comm.timestamp}">
+								<f:convertDateTime pattern="dd-MM-yy" />
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Author" />
+							</f:facet>
+							<h:outputText value="#{comm.user}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Comment text" />
+							</f:facet>
+							<h:outputText value="#{comm.texto}" />
+						</h:column>
+					</h:dataTable>
+					<h:form>
+						<h:panelGrid columns="4">
+							<h:outputText value="Comment: " />
+							<h:inputTextarea id="comment" label="Comment"
+								value="#{restaurantFormBackend.newUserComment.texto}"
+								size="1024" required="true"
+								validator="#{restaurantFormBackend.validateComment}"
+								disabled="#{loginFormBackend.user eq null}" />
+							<h:commandButton value="Add"
+								action="#{restaurantFormBackend.addUserCommentAction}"
+								disabled="#{loginFormBackend.user eq null}" />
+							<h:message for="comment" class="warning" />
+						</h:panelGrid>
+					</h:form>
+				</c:when>
+			</c:choose>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

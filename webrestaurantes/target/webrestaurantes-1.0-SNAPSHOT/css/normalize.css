@@ -425,15 +425,3 @@ td,
 th {
   padding: 0;
 }
-.grey {
-  background-color: #1EAEDB;
-}
-#thumbnail {
-  width: 280px;
-  height: 250px;
-  border-radius: 4px;
-  border: 2px solid white;
-  margin-left: 2px;
-  margin: 1.5px;
-
-}
